@@ -9,21 +9,38 @@ var app = app || {};
 
         todoCollection : {},
         initialize : function() {
-            this.todoCollection = new app.TodoCollection()
+           this.todoCollection = new app.TodoCollection()
            this.todoCollection.on('add', this.addOne, this);
            this.$el.html($('#list-template').html());
-            this.render();
+           this.newTodo = this.$('#new-todo');
+           this.render();
         },
+       events : {
+           'click #addTodo' : 'onCreateTodo',
+       },
         render : function() {
             this.todoCollection.fetch();
             return this;
         },
-
+       onCreateTodo : function(e) {
+           this.todoCollection.create(this.newAttributes(), {
+               wait : true
+           });
+           this.newTodo.val('');
+           this.todoCollection.fetch();
+       },
        addOne : function(todo) {
            var itemView = new app.TodoItemView({
                model : todo
            });
            $('#todo-lists').append(itemView.render().el);
        },
+       newAttributes : function() {
+           alert(this.newTodo.val());
+           return {
+               todo : this.newTodo.val(),
+               status : 0
+           }
+       }
     })
 })(app);
