@@ -12,6 +12,7 @@
    <script type="text/template" id="list-template">
    <h1>TODOリスト</h1>
    <textarea style="width:300px;height:50px"id="new-todo" placeholder="Todo?" autofocus></textarea>
+
    <input type="button" id="addTodo" value="追加">
    <hr>
    <div>
@@ -38,6 +39,7 @@
    <h2>Todo #<%- id %></h2>
    <div>
    <textarea style="width:300px;height:50px" id="edit-todo" autofocus placeholder="Todo?"><%- todo %></textarea>
+   <input type="button" id="updateTodo" value="更新"></input>
    <input type="button" id="updateCancel" value="キャンセル"></input>
    </div>
    </script>
